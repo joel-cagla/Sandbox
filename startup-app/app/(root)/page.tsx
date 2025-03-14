@@ -1,11 +1,23 @@
 //import Image from "next/image";
-
 import SearchForm from "../../components/SearchForm";
+import StartupCard from "../../components/StartupCard";
 
 export default async function Home({ searchParams}: {
   searchParams: Promise<{query?: string}>
 }) {
   const query = (await searchParams).query;
+
+  const posts = [{
+    createdAt: new Date(),
+    views: 25,
+    author: {_id: 1, name: "WimWam"},
+    _id: 1,
+    description: "Some description",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJIF0KazBQXAe-W9Af2GPv5j-Bg8yYd_RCfg&s",
+    category: "Tech",
+    title: "Some tech startup",
+  },
+];
   return (
     <>
       <section className="pink_container">
@@ -17,6 +29,22 @@ export default async function Home({ searchParams}: {
             competitions!
           </p>
           <SearchForm query={query} />
+      </section>
+
+      <section className="section_container">
+        <p className="text-30-semibold">
+          {query ? `Search results for ${query}`: 'All startups'}
+        </p>
+
+        <ul className="mt-7 card_grid">
+          {posts?.length > 0 ? (
+            posts.map((StartupCardType, number) => (
+              <StartupCard key={posts?._id} posts={posts}/>
+            ))
+          ) : (
+            <p className="no-results">No startups found</p>
+          )}
+        </ul>
       </section>
     </>
   );
