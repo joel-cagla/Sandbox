@@ -1,10 +1,20 @@
 //import Image from "next/image";
 
+import SearchForm from "../components/SearchForm";
+
 export default function Home() {
   return (
     <>
-    {/* <div className="bg-blue-500 text-white text-xl font-bold p-4">HELLO TAILWIND</div> */}
-    <h1 className="heading">HOME</h1>
+      <section className="pink_container">
+        <h1 className="heading">
+          Pitch your startup, <br />Connect with entrepreneurs
+        </h1>
+          <p 
+          className="sub-heading !max-w-3xl">Submit your ideas, vote on pitches and get noticed in 
+            competitions!
+          </p>
+          <SearchForm />
+      </section>
     </>
   );
 }
