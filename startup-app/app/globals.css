@@ -1,11 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer base{
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  }
 }
 
 @theme inline {
