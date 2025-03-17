@@ -8,13 +8,13 @@ export default async function Home({ searchParams}: {
   const query = (await searchParams).query;
 
   const posts = [{
-    createdAt: new Date(),
+    _createdAt: new Date(),
     views: 25,
-    author: {_id: 1, name: "WimWam"},
+    author: { _id: 1, name: "WimWam" }, 
     _id: 1,
     description: "Some description",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJIF0KazBQXAe-W9Af2GPv5j-Bg8yYd_RCfg&s",
-    category: "Tech",
+    category: "Some category",
     title: "Some tech startup",
   },
 ];
@@ -38,8 +38,8 @@ export default async function Home({ searchParams}: {
 
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
-            posts.map((StartupCardType, number) => (
-              <StartupCard key={posts?._id} posts={posts}/>
+            posts.map((post: StartupCardType, index: number) => (
+              <StartupCard key={post?._id} post={post}/>
             ))
           ) : (
             <p className="no-results">No startups found</p>
