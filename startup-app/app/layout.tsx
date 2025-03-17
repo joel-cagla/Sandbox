@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import 'easymde/dist/easymde.min.css';
 
 const workSans = localFont({
   src: [
@@ -27,10 +28,6 @@ const workSans = localFont({
     },{
       path: './fonts/WorkSans-Regular.ttf',
       weight: '400',
-      style: 'normal'
-    },{
-      path: './fonts/WorkSans-Black.ttf',
-      weight: '300',
       style: 'normal'
     },{
       path: './fonts/WorkSans-Thin.ttf',
