@@ -1,5 +1,5 @@
 import { defineType, defineField } from "sanity"
-import { UserIcon } from "lucide-react"
+import { UserIcon } from "@sanity/icons"
 
 export const author = defineType({
     name: "author",
