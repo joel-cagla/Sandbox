@@ -7,7 +7,6 @@ const create_page = async () => {
     const session = await auth();
 
     if(!session) redirect("/");
-    
     return (
         <>
         <section className="pink_container !min-h-[230px]">
