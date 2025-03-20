@@ -82,3 +82,29 @@ export const startups_by_id_query = defineQuery(
       category,
       image
     }`);
+
+
+export const playlist_by_slug_query =
+defineQuery(`*[_type == "playlist" && slug.current == $slug][0]{
+_id,
+title,
+slug,
+select[]->{
+  _id,
+  _createdAt,
+  title,
+  slug,
+  author->{
+    _id,
+    name,
+    slug,
+    image,
+    bio
+  },
+  views,
+  description,
+  category,
+  image,
+  pitch
+}
+}`);

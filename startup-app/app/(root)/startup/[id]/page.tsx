@@ -1,4 +1,4 @@
-import { startups_by_id_query } from "@/sanity/lib/queries";
+import { playlist_by_slug_query, startups_by_id_query } from "@/sanity/lib/queries";
 import React from "react";
 import {client} from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
@@ -9,6 +9,7 @@ import markdownit from "markdown-it";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
+import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 
 const md = markdownit();
 
@@ -17,7 +18,7 @@ const startup_page = async ({ params }: { params: Promise<{id: string}>}) => {
 
     const post = await client.fetch(startups_by_id_query, {id});
 
-    console.log(post.title);
+    const {select : topPosts } = await client.fetch(playlist_by_slug_query, {slug: 'top-picks'});
 
     if(!post) return notFound();
 
@@ -58,6 +59,20 @@ const startup_page = async ({ params }: { params: Promise<{id: string}>}) => {
                 )}
             </div>
             <hr className="divider"/>
+
+            {topPosts?.length > 0 && (
+                <div className="max-w-4xl mx-auto">
+                    <p className="text-30-semibold">Top picks</p>
+
+                    <ul className="mt-7 card_grid-sm">
+                        {topPosts.map((post: StartupTypeCard, index: number) => (
+                        <StartupCard key={index} post={post} />
+                    ))}
+                    </ul>
+                </div>
+            )}
+
+
             <Suspense fallback={<Skeleton className="view_skeleton"/>}>
                 <View id={id}/>
             </Suspense>
