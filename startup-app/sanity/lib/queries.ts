@@ -43,8 +43,9 @@ export const startups_by_id_query = defineQuery(
   )
 
   export const author_by_github_id_query = defineQuery(
-    `*[_type == author && _id == $id][0]{
+    `*[_type == "author" && id == $id][0]{
     _id,
+    id,
     name,
     username,
     email,
